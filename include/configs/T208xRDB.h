@@ -216,17 +216,30 @@ unsigned long get_board_ddr_clk(void);
 #define CONFIG_SYS_FLASH_BANKS_LIST	{CONFIG_SYS_FLASH_BASE_PHYS }
 
 /* CPLD on IFC */
-#define CONFIG_SYS_CPLD_BASE	0xffdf0000
-#define CONFIG_SYS_CPLD_BASE_PHYS	(0xf00000000ull | CONFIG_SYS_CPLD_BASE)
-#define CONFIG_SYS_CSPR2_EXT	(0xf)
-#define CONFIG_SYS_CSPR2	(CSPR_PHYS_ADDR(CONFIG_SYS_CPLD_BASE) \
-				| CSPR_PORT_SIZE_8 \
-				| CSPR_MSEL_GPCM \
-				| CSPR_V)
-#define CONFIG_SYS_AMASK2	IFC_AMASK(64*1024)
-#define CONFIG_SYS_CSOR2	0x0
 
-/* CPLD Timing parameters for IFC CS2 */
+/* hbjoo
+* #define CONFIG_SYS_CPLD_BASE    0xffdf0000
+* #define CONFIG_SYS_CPLD_BASE_PHYS       (0xf00000000ull | CONFIG_SYS_CPLD_BASE)
+* #define CONFIG_SYS_CSPR2_EXT    (0xf)
+* #define CONFIG_SYS_CSPR2        (CSPR_PHYS_ADDR(CONFIG_SYS_CPLD_BASE) \
+*                                 | CSPR_PORT_SIZE_8 \
+*                                 | CSPR_MSEL_GPCM \
+*                                 | CSPR_V)
+* #define CONFIG_SYS_AMASK2       IFC_AMASK(64*1024)
+* #define CONFIG_SYS_CSOR2        0x0
+*/
+
+#define CONFIG_SYS_CPLD_BASE    0xffd00000
+#define CONFIG_SYS_CPLD_BASE_PHYS       (0xf00000000ull | CONFIG_SYS_CPLD_BASE)
+#define CONFIG_SYS_CSPR2_EXT    (0xf)
+#define CONFIG_SYS_CSPR2        (CSPR_PHYS_ADDR(CONFIG_SYS_CPLD_BASE) \
+                                | CSPR_PORT_SIZE_16 \
+                                | CSPR_MSEL_GPCM \
+                                | CSPR_V)
+#define CONFIG_SYS_AMASK2       IFC_AMASK(256*1024)
+#define CONFIG_SYS_CSOR2        0x0
+
+/*  Timing parameters for IFC CS2 */
 #define CONFIG_SYS_CS2_FTIM0		(FTIM0_GPCM_TACSE(0x0e) | \
 					FTIM0_GPCM_TEADC(0x0e) | \
 					FTIM0_GPCM_TEAHC(0x0e))
